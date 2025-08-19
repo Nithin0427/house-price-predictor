@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🏠 House Price Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🏠 House Price Predictor</h1>
+    <div class="card">
+      <form action="/predict" method="post">
+        <label>Square Feet</label>
+        <input type="number" name="SquareFeet" placeholder="Enter area in Sq.Ft" required>
+
+        <label>Bedrooms</label>
+        <input type="number" name="Bedrooms" placeholder="Number of Bedrooms" required>
+
+        <label>Bathrooms</label>
+        <input type="number" step="0.5" name="Bathrooms" placeholder="Number of Bathrooms" required>
+
+        <label>Neighborhood</label>
+        <select name="Neighborhood" required>
+          <option value="">-- Select Neighborhood --</option>
+          <option value="Urban">Urban</option>
+          <option value="Suburb">Suburb</option>
+          <option value="Rural">Rural</option>
+        </select>
+
+        <label>Year Built</label>
+        <input type="number" name="YearBuilt" placeholder="YYYY" required>
+
+        <button type="submit">Predict Price</button>
+      </form>
+    </div>
+  </div>
+
+  {% if prediction_text %}
+    <div class="result-overlay" id="resultOverlay">
+      <div class="result-card">
+        <span class="close-btn" onclick="document.getElementById('resultOverlay').style.display='none'">✖</span>
+        {{ prediction_text }}
+      </div>
+    </div>
+  {% endif %}
+</body>
+</html>
