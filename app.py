@@ -54,7 +54,7 @@ def api_predict():
         }])
 
         pred_log = float(model.predict(df)[0])
-        pred = float(np.expm1(pred_log))      # inverse log-transform
+        pred = float(np.expm1(pred_log))      
 
         return jsonify({"prediction": pred, "formatted": format_inr(pred)})
     except Exception as e:
